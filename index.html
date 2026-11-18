@@ -1,37 +1,52 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="zh-Hant" data-theme="paper">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Jimmy Mochi | 個人主頁</title>
-  <meta name="description" content="Jimmy Mochi 的個人主頁與作品集 — jimmymochi.loc.cc" />
+  <title>陳柏亘 Chen Po-Hsuan · Jimmy Mochi | 個人誌</title>
+  <meta name="description" content="陳柏亘（Chen Po-Hsuan / Jimmy Mochi）的個人誌：臺北市立大學地球環境暨生物資源學系三年級、iPAS AI應用規劃師初級、地震觀測分析與日常 AI 工具實作紀錄。" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@500;700;900&family=Shippori+Mincho:wght@500;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg: #0b0f19;
-      --bg-accent: radial-gradient(circle at 20% 20%, rgba(56, 189, 248, 0.14), transparent 45%),
-                   radial-gradient(circle at 80% 75%, rgba(168, 85, 247, 0.14), transparent 45%);
-      --card: rgba(17, 24, 39, 0.72);
-      --card-border: rgba(255, 255, 255, 0.1);
-      --text: #f3f4f6;
-      --muted: #9ca3af;
-      --accent: #38bdf8;
-      --accent-soft: rgba(56, 189, 248, 0.14);
-      --pill-bg: rgba(255, 255, 255, 0.06);
-      --shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+      --bg: #FBF7F0;
+      --bg-paper-alt: #F3ECE0;
+      --card: #FFFDF9;
+      --card-tint: #F7F1E6;
+      --text: #2B2523;
+      --muted: #6B5E54;
+      --accent: #C85A32;
+      --accent-soft: rgba(200, 90, 50, 0.1);
+      --fuji: #3A5470;
+      --fuji-soft: rgba(58, 84, 112, 0.1);
+      --moss: #597053;
+      --moss-soft: rgba(89, 112, 83, 0.11);
+      --line: #DFD3C3;
+      --shadow: 0 14px 36px rgba(43, 37, 35, 0.07);
+      --photo-frame: #FFFFFF;
+      --photo-shadow: 0 18px 40px rgba(43, 37, 35, 0.13);
+      --grain-opacity: 0.04;
     }
 
-    [data-theme="light"] {
-      --bg: #f8fafc;
-      --bg-accent: radial-gradient(circle at 20% 20%, rgba(14, 165, 233, 0.12), transparent 45%),
-                   radial-gradient(circle at 80% 75%, rgba(139, 92, 246, 0.12), transparent 45%);
-      --card: rgba(255, 255, 255, 0.86);
-      --card-border: rgba(15, 23, 42, 0.08);
-      --text: #0f172a;
-      --muted: #475569;
-      --accent: #0284c7;
-      --accent-soft: rgba(2, 132, 199, 0.1);
-      --pill-bg: rgba(15, 23, 42, 0.05);
-      --shadow: 0 20px 50px rgba(15, 23, 42, 0.08);
+    [data-theme="night"] {
+      --bg: #131822;
+      --bg-paper-alt: #1A2130;
+      --card: #1B2230;
+      --card-tint: #222B3B;
+      --text: #EFE8DC;
+      --muted: #B3AA9B;
+      --accent: #E08B5B;
+      --accent-soft: rgba(224, 139, 91, 0.14);
+      --fuji: #7DA2C6;
+      --fuji-soft: rgba(125, 162, 198, 0.14);
+      --moss: #7FA077;
+      --moss-soft: rgba(127, 160, 119, 0.15);
+      --line: #303B4E;
+      --shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+      --photo-frame: #232C3D;
+      --photo-shadow: 0 20px 44px rgba(0, 0, 0, 0.45);
+      --grain-opacity: 0.03;
     }
 
     * {
@@ -40,275 +55,1123 @@
       padding: 0;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
-      min-height: 100vh;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+      font-family: "Zen Kaku Gothic New", "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
       background-color: var(--bg);
-      background-image: var(--bg-accent);
+      background-image:
+        radial-gradient(circle at 12% 8%, var(--accent-soft), transparent 36%),
+        radial-gradient(circle at 88% 18%, var(--fuji-soft), transparent 38%),
+        radial-gradient(circle at 80% 85%, var(--moss-soft), transparent 35%);
       color: var(--text);
+      line-height: 1.78;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* 細緻和紙顆粒感 */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: var(--grain-opacity);
+      background-image: radial-gradient(var(--text) 0.55px, transparent 0.55px);
+      background-size: 18px 18px;
+      z-index: 0;
+    }
+
+    .serif {
+      font-family: "Shippori Mincho", "Noto Serif TC", Georgia, serif;
+    }
+
+    .page-wrap {
+      position: relative;
+      z-index: 1;
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 28px 24px 64px;
+    }
+
+    /* 雜誌刊頭 Masthead */
+    .masthead {
+      border-top: 2px solid var(--text);
+      border-bottom: 1px solid var(--line);
+      padding: 14px 0 18px;
+      margin-bottom: 36px;
+    }
+
+    .masthead-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      font-size: 0.74rem;
+      letter-spacing: 0.16em;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .masthead-main {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .brand-group {
       display: flex;
       align-items: center;
-      justify-content: center;
-      padding: 24px;
-      line-height: 1.65;
-      transition: background-color 0.25s ease, color 0.25s ease;
+      gap: 14px;
     }
 
-    .container {
-      width: 100%;
-      max-width: 720px;
-      background: var(--card);
-      border: 1px solid var(--card-border);
-      border-radius: 24px;
-      padding: 40px 36px;
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
-      box-shadow: var(--shadow);
+    .brand-title {
+      font-size: clamp(1.35rem, 2.5vw, 1.8rem);
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      line-height: 1.2;
     }
 
-    header {
+    .brand-en {
+      display: block;
+      font-size: 0.78rem;
+      letter-spacing: 0.2em;
+      color: var(--muted);
+      font-weight: 500;
+      margin-top: 2px;
+    }
+
+    .hanko {
+      width: 38px;
+      height: 38px;
+      flex-shrink: 0;
+      transform: rotate(-4deg);
+    }
+
+    .masthead-actions {
       display: flex;
-      align-items: flex-start;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .theme-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--card);
+      border: 1px solid var(--line);
+      color: var(--text);
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      cursor: pointer;
+      box-shadow: var(--shadow);
+      transition: transform 0.18s ease, border-color 0.18s ease;
+    }
+
+    .theme-toggle:hover {
+      transform: translateY(-1px);
+      border-color: var(--accent);
+    }
+
+    .nav-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 20px;
+      margin-top: 16px;
+      padding-top: 12px;
+      border-top: 1px dashed var(--line);
+      font-size: 0.9rem;
+    }
+
+    .nav-strip a {
+      color: var(--muted);
+      text-decoration: none;
+      position: relative;
+      padding-bottom: 2px;
+      transition: color 0.18s ease;
+    }
+
+    .nav-strip a:hover {
+      color: var(--accent);
+    }
+
+    /* Hero 封面特輯 */
+    .hero {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 40px;
+      align-items: center;
+      padding-bottom: 48px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .issue-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 5px 12px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      margin-bottom: 14px;
+    }
+
+    .hero-name {
+      font-size: clamp(2.1rem, 4.4vw, 3.1rem);
+      font-weight: 900;
+      line-height: 1.18;
+      letter-spacing: 0.02em;
+      margin-bottom: 8px;
+    }
+
+    .hero-subtitle {
+      font-size: 1.05rem;
+      color: var(--fuji);
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      margin-bottom: 18px;
+    }
+
+    .badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 22px;
+    }
+
+    .meta-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 13px;
+      border-radius: 10px;
+      background: var(--card);
+      border: 1px solid var(--line);
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: var(--text);
+    }
+
+    .meta-badge.highlight {
+      background: var(--moss-soft);
+      border-color: rgba(89, 112, 83, 0.28);
+      color: var(--moss);
+      font-weight: 700;
+    }
+
+    .hero-bio {
+      font-size: 1.02rem;
+      color: var(--text);
+      margin-bottom: 14px;
+      max-width: 56ch;
+    }
+
+    .hero-bio-sub {
+      font-size: 0.96rem;
+      color: var(--muted);
+      max-width: 56ch;
+      margin-bottom: 24px;
+    }
+
+    .hero-sketch-bar {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 14px 18px;
+      background: var(--card-tint);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+    }
+
+    .hero-sketch-text {
+      font-size: 0.88rem;
+      color: var(--muted);
+    }
+
+    .hero-sketch-text strong {
+      color: var(--text);
+      display: block;
+      font-size: 0.94rem;
+      margin-bottom: 2px;
+    }
+
+    /* 拍立得雜誌畫框 */
+    .polaroid-wrap {
+      position: relative;
+      display: flex;
+      justify-content: center;
+    }
+
+    .tape {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%) rotate(-2.5deg);
+      width: 104px;
+      height: 26px;
+      background: rgba(200, 90, 50, 0.22);
+      border-left: 1px dashed rgba(200, 90, 50, 0.35);
+      border-right: 1px dashed rgba(200, 90, 50, 0.35);
+      backdrop-filter: blur(2px);
+      z-index: 2;
+    }
+
+    .polaroid {
+      background: var(--photo-frame);
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 14px 14px 18px;
+      box-shadow: var(--photo-shadow);
+      transform: rotate(1.3deg);
+      transition: transform 0.28s ease;
+      max-width: 390px;
+      width: 100%;
+    }
+
+    .polaroid:hover {
+      transform: rotate(0deg) translateY(-3px);
+    }
+
+    .polaroid img {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      border-radius: 3px;
+      display: block;
+    }
+
+    .polaroid-caption {
+      margin-top: 13px;
+      font-size: 0.82rem;
+      color: var(--muted);
+      letter-spacing: 0.03em;
+      display: flex;
       justify-content: space-between;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .polaroid-caption .fig-code {
+      color: var(--accent);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      white-space: nowrap;
+    }
+
+    /* 雜誌章節通用樣式 */
+    .feature-section {
+      padding: 52px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      flex-wrap: wrap;
       gap: 16px;
       margin-bottom: 28px;
     }
 
-    .profile {
-      display: flex;
-      align-items: center;
-      gap: 18px;
-    }
-
-    .avatar {
-      width: 68px;
-      height: 68px;
-      border-radius: 20px;
-      background: linear-gradient(135deg, #38bdf8, #818cf8);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 28px;
-      font-weight: 700;
-      color: #fff;
-      flex-shrink: 0;
-      box-shadow: 0 10px 25px rgba(56, 189, 248, 0.25);
-    }
-
-    h1 {
-      font-size: 1.75rem;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-    }
-
-    .subtitle {
-      color: var(--muted);
-      font-size: 0.95rem;
-      margin-top: 2px;
-    }
-
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      margin-top: 8px;
-      padding: 4px 10px;
-      border-radius: 999px;
-      background: var(--accent-soft);
+    .feature-label {
+      font-size: 0.78rem;
+      letter-spacing: 0.18em;
       color: var(--accent);
-      font-size: 0.8rem;
-      font-weight: 600;
-    }
-
-    .dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: #22c55e;
-      box-shadow: 0 0 8px #22c55e;
-    }
-
-    .theme-btn {
-      background: var(--pill-bg);
-      border: 1px solid var(--card-border);
-      color: var(--text);
-      border-radius: 12px;
-      padding: 8px 12px;
-      font-size: 0.85rem;
-      cursor: pointer;
-      transition: transform 0.15s ease, opacity 0.15s ease;
-    }
-
-    .theme-btn:hover {
-      transform: translateY(-1px);
-      opacity: 0.9;
-    }
-
-    section {
-      margin-top: 28px;
-    }
-
-    h2 {
-      font-size: 0.85rem;
+      font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--muted);
-      margin-bottom: 12px;
+      margin-bottom: 6px;
     }
 
-    .about-text {
-      font-size: 1rem;
-      color: var(--text);
+    .section-title {
+      font-size: clamp(1.55rem, 2.8vw, 2.05rem);
+      font-weight: 700;
+      line-height: 1.3;
     }
 
-    .grid {
+    .section-illust {
+      flex-shrink: 0;
+    }
+
+    /* 編輯引言盒 */
+    .editorial-quote {
+      background: var(--bg-paper-alt);
+      border-left: 4px solid var(--accent);
+      border-radius: 0 18px 18px 0;
+      padding: 24px 26px;
+      margin-bottom: 28px;
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-      gap: 14px;
+      grid-template-columns: 1fr auto;
+      gap: 20px;
+      align-items: center;
     }
 
-    .card-item {
-      background: var(--pill-bg);
-      border: 1px solid var(--card-border);
-      border-radius: 16px;
-      padding: 16px 18px;
-      text-decoration: none;
-      color: inherit;
-      transition: transform 0.18s ease, border-color 0.18s ease;
-      display: block;
+    .quote-main {
+      font-size: clamp(1.1rem, 2vw, 1.32rem);
+      font-weight: 700;
+      line-height: 1.6;
+      margin-bottom: 8px;
     }
 
-    .card-item:hover {
-      transform: translateY(-2px);
+    .quote-note {
+      font-size: 0.94rem;
+      color: var(--muted);
+    }
+
+    /* 專案卡片格線 */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .mag-card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 24px;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 16px;
+      transition: transform 0.22s ease, border-color 0.22s ease;
+    }
+
+    .mag-card:hover {
+      transform: translateY(-3px);
       border-color: var(--accent);
     }
 
-    .card-title {
-      font-weight: 600;
-      font-size: 1rem;
-      margin-bottom: 4px;
+    .card-kicker {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.76rem;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-bottom: 8px;
     }
 
-    .card-desc {
-      font-size: 0.875rem;
+    .card-tag {
+      display: inline-block;
+      padding: 3px 9px;
+      border-radius: 999px;
+      background: var(--fuji-soft);
+      color: var(--fuji);
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+
+    .card-tag.warm {
+      background: var(--accent-soft);
+      color: var(--accent);
+    }
+
+    .card-tag.moss {
+      background: var(--moss-soft);
+      color: var(--moss);
+    }
+
+    .mag-card h3 {
+      font-size: 1.18rem;
+      font-weight: 700;
+      line-height: 1.4;
+      margin-bottom: 8px;
+    }
+
+    .mag-card p {
+      font-size: 0.94rem;
       color: var(--muted);
     }
 
-    .tags {
+    .card-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      padding-top: 12px;
+      border-top: 1px dashed var(--line);
+    }
+
+    .link-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.84rem;
+      font-weight: 600;
+      color: var(--text);
+      text-decoration: none;
+      padding: 5px 12px;
+      border-radius: 999px;
+      background: var(--card-tint);
+      border: 1px solid var(--line);
+      transition: background-color 0.18s ease, color 0.18s ease, border-color 0.18s ease;
+    }
+
+    .link-pill:hover {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #FFFDF9;
+    }
+
+    /* Feature 02 地球科學三欄卡片 */
+    .earth-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .earth-stat {
+      display: inline-block;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--fuji);
+      margin-top: 10px;
+    }
+
+    /* Feature 03 學經歷與認證 */
+    .journey-grid {
+      display: grid;
+      grid-template-columns: 0.92fr 1.08fr;
+      gap: 28px;
+      align-items: start;
+    }
+
+    .cert-card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 26px;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cert-ribbon {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 11px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      margin-bottom: 12px;
+    }
+
+    .cert-card h3 {
+      font-size: 1.32rem;
+      margin-bottom: 10px;
+    }
+
+    .cert-card p {
+      font-size: 0.94rem;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+
+    .skill-chips {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
     }
 
-    .tag {
-      background: var(--pill-bg);
-      border: 1px solid var(--card-border);
-      border-radius: 999px;
-      padding: 5px 12px;
-      font-size: 0.85rem;
+    .skill-chip {
+      font-size: 0.82rem;
+      padding: 4px 11px;
+      border-radius: 8px;
+      background: var(--bg-paper-alt);
+      border: 1px solid var(--line);
       color: var(--text);
     }
 
-    footer {
-      margin-top: 34px;
-      padding-top: 18px;
-      border-top: 1px solid var(--card-border);
+    .timeline-card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 26px 28px;
+      box-shadow: var(--shadow);
+    }
+
+    .timeline-list {
+      list-style: none;
+      position: relative;
+      padding-left: 24px;
+    }
+
+    .timeline-list::before {
+      content: "";
+      position: absolute;
+      left: 7px;
+      top: 8px;
+      bottom: 8px;
+      width: 2px;
+      background: var(--line);
+    }
+
+    .timeline-item {
+      position: relative;
+      padding-bottom: 22px;
+    }
+
+    .timeline-item:last-child {
+      padding-bottom: 0;
+    }
+
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      left: -22px;
+      top: 7px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--card);
+      border: 2.5px solid var(--fuji);
+    }
+
+    .timeline-item.active::before {
+      background: var(--accent);
+      border-color: var(--accent);
+      box-shadow: 0 0 0 4px var(--accent-soft);
+    }
+
+    .timeline-stage {
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      margin-bottom: 2px;
+    }
+
+    .timeline-school {
+      font-size: 1.06rem;
+      font-weight: 700;
+    }
+
+    .timeline-detail {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    /* 章節分隔插畫 */
+    .divider-motif {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      margin: 4px 0 0;
+      color: var(--muted);
+      font-size: 0.78rem;
+      letter-spacing: 0.2em;
+    }
+
+    /* Colophon 頁尾與聯絡方式 */
+    .colophon {
+      padding-top: 48px;
+    }
+
+    .connect-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+
+    .connect-card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 18px 20px;
+      text-decoration: none;
+      color: inherit;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+      display: block;
+    }
+
+    .connect-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--accent);
+    }
+
+    .connect-card.muted-card {
+      background: var(--card-tint);
+      border-style: dashed;
+    }
+
+    .connect-label {
+      font-size: 0.76rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .connect-title {
+      font-size: 1.04rem;
+      font-weight: 700;
+      margin-bottom: 3px;
+    }
+
+    .connect-desc {
+      font-size: 0.86rem;
+      color: var(--muted);
+      word-break: break-word;
+    }
+
+    .colophon-bar {
+      border-top: 2px solid var(--text);
+      padding-top: 16px;
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
       align-items: center;
       gap: 12px;
-      font-size: 0.85rem;
+      font-size: 0.84rem;
       color: var(--muted);
     }
 
-    @media (max-width: 520px) {
-      .container {
-        padding: 28px 22px;
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: 1fr;
+        gap: 32px;
       }
-      header {
-        flex-direction: column;
+      .earth-grid {
+        grid-template-columns: 1fr;
       }
-      .theme-btn {
-        align-self: flex-end;
+      .journey-grid {
+        grid-template-columns: 1fr;
+      }
+      .connect-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 640px) {
+      .page-wrap {
+        padding: 20px 16px 48px;
+      }
+      .card-grid,
+      .connect-grid {
+        grid-template-columns: 1fr;
+      }
+      .editorial-quote {
+        grid-template-columns: 1fr;
+      }
+      .polaroid {
+        transform: rotate(0deg);
       }
     }
   </style>
 </head>
 <body>
-  <main class="container">
-    <header>
-      <div class="profile">
-        <div class="avatar">JM</div>
-        <div>
-          <h1>Jimmy Mochi</h1>
-          <p class="subtitle">個人空間 · 工具實驗 · 數位筆記</p>
-          <span class="badge"><span class="dot"></span> jimmymochi.loc.cc 運行中</span>
+  <div class="page-wrap">
+    <!-- 雜誌刊頭 -->
+    <header class="masthead">
+      <div class="masthead-top">
+        <span>ISSUE NO. 01 · TAIPEI × MT. FUJI · PERSONAL ARCHIVE</span>
+        <span>JIMMYMOCHI.LOC.CC</span>
+      </div>
+
+      <div class="masthead-main">
+        <div class="brand-group">
+          <!-- 日式落款印章 SVG -->
+          <svg class="hanko" viewBox="0 0 64 64" aria-hidden="true">
+            <rect x="4" y="4" width="56" height="56" rx="10" fill="#C85A32" />
+            <rect x="8" y="8" width="48" height="48" rx="7" fill="none" stroke="#FFFDF9" stroke-width="1.8" opacity="0.85" />
+            <text x="32" y="29" text-anchor="middle" fill="#FFFDF9" font-size="18" font-weight="700" font-family="'Noto Serif TC', serif">柏</text>
+            <text x="32" y="49" text-anchor="middle" fill="#FFFDF9" font-size="18" font-weight="700" font-family="'Noto Serif TC', serif">亘</text>
+          </svg>
+          <div>
+            <div class="brand-title serif">陳柏亘 個人誌</div>
+            <span class="brand-en">PO-HSUAN CHEN · JIMMY MOCHI</span>
+          </div>
+        </div>
+
+        <div class="masthead-actions">
+          <button class="theme-toggle" id="themeToggle" type="button" aria-label="切換和紙晝光與富士月夜主題">
+            <span id="themeIcon">🌙</span>
+            <span id="themeLabel">切換為富士月夜</span>
+          </button>
         </div>
       </div>
-      <button class="theme-btn" id="themeToggle" aria-label="切換深淺色主題">切換主題</button>
+
+      <nav class="nav-strip" aria-label="頁面導覽">
+        <a href="#about">關於我</a>
+        <a href="#ai-lab">AI 應用實驗</a>
+        <a href="#earth">地球科學研究</a>
+        <a href="#journey">學經歷與認證</a>
+        <a href="#colophon">聯絡資訊</a>
+      </nav>
     </header>
 
-    <section>
-      <h2>關於我</h2>
-      <p class="about-text">
-        歡迎來到 Jimmy Mochi 的個人主頁。這裡用來記錄我的技術探索、自動化工作流與日常小專案，也作為個人網路名片與入口站。
-      </p>
-    </section>
+    <!-- 封面特輯 Hero Spread -->
+    <section class="hero" id="about">
+      <div>
+        <div class="issue-pill">COVER STORY · EARTH SCIENCE × AI</div>
+        <h1 class="hero-name serif">陳柏亘 <span style="font-weight: 500; font-size: 0.72em;">Chen Po-Hsuan</span></h1>
+        <p class="hero-subtitle">Jimmy Mochi · 大學生活與數位工具實驗手札</p>
 
-    <section>
-      <h2>關注領域</h2>
-      <div class="tags">
-        <span class="tag">地震學與地球物理</span>
-        <span class="tag">自動化工作流</span>
-        <span class="tag">AI 工具應用</span>
-        <span class="tag">資料分析與視覺化</span>
+        <div class="badge-row">
+          <span class="meta-badge">臺北市立大學 地球環境暨生物資源學系 三年級</span>
+          <span class="meta-badge highlight">iPAS AI應用規劃師（初級）</span>
+        </div>
+
+        <p class="hero-bio">
+          目前在台北讀地球科學與環境資源，平常最常做的事是把課堂研究與生活裡的小麻煩，變成真正派得上用場的 AI 工具與自動化流程。從分析數十萬筆台灣地震目錄、寫出幫同學檢查畢業學分的小系統，到替家人整理每日 ETF 持股變化，都是從身邊具體的需求開始動手。
+        </p>
+        <p class="hero-bio-sub">
+          喜歡看山、聽日文歌，也喜歡在深夜對著終端機試出一個剛剛好能解決問題的腳本。這座小站收錄了我在 AI 應用與地球科學路上的筆記與作品。
+        </p>
+
+        <!-- 手繪富士山與波形小插畫條 -->
+        <div class="hero-sketch-bar">
+          <svg width="78" height="44" viewBox="0 0 78 44" fill="none" aria-hidden="true">
+            <circle cx="60" cy="11" r="5.5" stroke="#E08B5B" stroke-width="1.6" />
+            <path d="M8 36L28 14L35 21L41 14L61 36" stroke="#3A5470" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M23 20C27 21.5 31 21 34.5 19.5C38 21 42 21.5 46 20" stroke="#C85A32" stroke-width="1.5" stroke-linecap="round" />
+            <path d="M4 39H74" stroke="#DFD3C3" stroke-width="1.5" stroke-linecap="round" />
+          </svg>
+          <div class="hero-sketch-text">
+            <strong>在地表觀察與數位工具之間漫步</strong>
+            記錄地球環境學科的資料分析、AI 實作判斷，還有旅途中遇見的好風景。
+          </div>
+        </div>
+      </div>
+
+      <div class="polaroid-wrap">
+        <div class="tape" aria-hidden="true"></div>
+        <figure class="polaroid">
+          <img src="./封面照片.jpg" alt="月光下的富士山與湖畔夜色剪影" />
+          <figcaption class="polaroid-caption">
+            <span class="fig-code">FIG. 01</span>
+            <span>月光下的富士山與湖畔夜色 · 個人旅行與影像紀錄</span>
+          </figcaption>
+        </figure>
       </div>
     </section>
 
-    <section>
-      <h2>精選專案與連結</h2>
-      <div class="grid">
-        <a class="card-item" href="https://github.com/jimmymochi" target="_blank" rel="noopener noreferrer">
-          <div class="card-title">GitHub (@jimmymochi)</div>
-          <div class="card-desc">所有開源專案、研究工具與日常實驗</div>
-        </a>
-        <a class="card-item" href="https://github.com/jimmymochi/taiwan-seismicity-analysis" target="_blank" rel="noopener noreferrer">
-          <div class="card-title">Taiwan Seismicity Analysis</div>
-          <div class="card-desc">台灣地震活動分析與資料處理工具</div>
-        </a>
-        <a class="card-item" href="https://github.com/jimmymochi/paperread-cli" target="_blank" rel="noopener noreferrer">
-          <div class="card-title">paperread-cli</div>
-          <div class="card-desc">命令列學術論文閱讀與整理工具</div>
-        </a>
-        <a class="card-item" href="https://github.com/jimmymochi/folia-jp-zh-live-lyrics" target="_blank" rel="noopener noreferrer">
-          <div class="card-title">Folia JP-ZH Live Lyrics</div>
-          <div class="card-desc">日語歌曲即時雙語歌詞顯示工具</div>
-        </a>
+    <!-- FEATURE 01 · AI 應用與數位工具實驗室 -->
+    <section class="feature-section" id="ai-lab">
+      <div class="section-head">
+        <div>
+          <div class="feature-label">FEATURE 01 · AI WORKFLOW &amp; TOOLS</div>
+          <h2 class="section-title serif">AI 應用與數位工具實驗室</h2>
+        </div>
+        <!-- 咖啡杯與筆記本手繪插畫 -->
+        <svg class="section-illust" width="92" height="52" viewBox="0 0 92 52" fill="none" aria-hidden="true">
+          <rect x="10" y="12" width="32" height="32" rx="4" stroke="#3A5470" stroke-width="1.7" />
+          <path d="M16 20H36M16 27H32M16 34H28" stroke="#C85A32" stroke-width="1.5" stroke-linecap="round" />
+          <path d="M54 22H76V33C76 38.5 71.5 43 66 43H64C58.5 43 54 38.5 54 33V22Z" stroke="#3A5470" stroke-width="1.7" />
+          <path d="M76 25H80C82.2 25 84 26.8 84 29C84 31.2 82.2 33 80 33H76" stroke="#3A5470" stroke-width="1.7" />
+          <path d="M60 15C60 12 63 11 63 8M68 15C68 12 71 11 71 8" stroke="#E08B5B" stroke-width="1.5" stroke-linecap="round" />
+        </svg>
+      </div>
+
+      <div class="editorial-quote">
+        <div>
+          <p class="quote-main serif">「當 AI 已經可以快速幫你實現很多東西，你真正想解決的是什麼問題？」</p>
+          <p class="quote-note">
+            做 AI 應用對我來說，重點在於看清楚問題本身與驗證方式。從自己、同學與家人的真實日常出發，把反覆耗時的工作整理成可檢查、可重複執行的工作流。
+          </p>
+        </div>
+        <svg width="46" height="46" viewBox="0 0 46 46" fill="none" aria-hidden="true">
+          <circle cx="23" cy="23" r="20" stroke="#C85A32" stroke-width="1.4" stroke-dasharray="4 4" />
+          <path d="M23 12V34M12 23H34" stroke="#C85A32" stroke-width="1.6" stroke-linecap="round" />
+        </svg>
+      </div>
+
+      <div class="card-grid">
+        <article class="mag-card">
+          <div>
+            <div class="card-kicker">
+              <span class="card-tag warm">案例分享 · 專題網站</span>
+              <span>2026.07</span>
+            </div>
+            <h3>0731 AI 實作分享專題網站</h3>
+            <p>
+              整理三個真實開發過程中的判斷故事：在比較既有工具後主動喊停的 PDF 翻譯原型、從學生真實痛點設計的畢業學分審查工具，以及替家人打造的 00981A 每日持股比對與自動 PDF 報告流程。
+            </p>
+          </div>
+          <div class="card-links">
+            <a class="link-pill" href="https://github.com/jimmymochi/0731AIExchange" target="_blank" rel="noopener noreferrer">GitHub 專案</a>
+            <a class="link-pill" href="https://huggingface.co/spaces/Sapphirejimmy/0713AIExchange" target="_blank" rel="noopener noreferrer">線上網站</a>
+          </div>
+        </article>
+
+        <article class="mag-card">
+          <div>
+            <div class="card-kicker">
+              <span class="card-tag">校園工具 · Web App</span>
+              <span>UTAIPEI</span>
+            </div>
+            <h3>北市大畢業學分自我審查系統</h3>
+            <p>
+              協助校內同學把繁瑣的修課紀錄與各類畢業門檻，轉換成清楚易讀的檢核結果與進度視覺化，減輕人工逐筆核對的負擔。
+            </p>
+          </div>
+          <div class="card-links">
+            <a class="link-pill" href="https://huggingface.co/spaces/JinJia0618/UTaipei-Student" target="_blank" rel="noopener noreferrer">前往 Hugging Face Space</a>
+          </div>
+        </article>
+
+        <article class="mag-card">
+          <div>
+            <div class="card-kicker">
+              <span class="card-tag moss">閱讀工作流 · CLI</span>
+              <span>OPEN SOURCE</span>
+            </div>
+            <h3>PaperRead CLI 學術論文閱讀工具</h3>
+            <p>
+              在開源社群專案基礎上進行功能擴充，加入 Antigravity CLI 與額度追蹤支援，讓搜尋、整理與閱讀研究文獻的終端機操作更順手。
+            </p>
+          </div>
+          <div class="card-links">
+            <a class="link-pill" href="https://github.com/jimmymochi/paperread-cli" target="_blank" rel="noopener noreferrer">GitHub 專案</a>
+          </div>
+        </article>
+
+        <article class="mag-card">
+          <div>
+            <div class="card-kicker">
+              <span class="card-tag warm">生活與學習 · 小工具</span>
+              <span>SIDE PROJECTS</span>
+            </div>
+            <h3>Folia 日文即時歌詞 ＆ 胺基酸默寫實驗室</h3>
+            <p>
+              把生活興趣與課業複習做進網頁工具裡。一個幫日語歌曲加上繁中翻譯與逐字同步字幕，另一個協助練習手寫胺基酸結構、代碼與錯題複習。
+            </p>
+          </div>
+          <div class="card-links">
+            <a class="link-pill" href="https://github.com/jimmymochi/folia-jp-zh-live-lyrics" target="_blank" rel="noopener noreferrer">Folia 雙語歌詞</a>
+            <a class="link-pill" href="https://github.com/jimmymochi/amino-acid-memory-lab" target="_blank" rel="noopener noreferrer">胺基酸練習室</a>
+          </div>
+        </article>
       </div>
     </section>
 
-    <footer>
-      <span>© <span id="year"></span> Jimmy Mochi</span>
-      <span>Hosted on GitHub Pages · jimmymochi.loc.cc</span>
+    <!-- FEATURE 02 · 地球環境與地震觀測筆記 -->
+    <section class="feature-section" id="earth">
+      <div class="section-head">
+        <div>
+          <div class="feature-label">FEATURE 02 · EARTH &amp; SEISMOLOGY</div>
+          <h2 class="section-title serif">地球環境與地震觀測筆記</h2>
+        </div>
+        <!-- 地震波與等高線插畫 -->
+        <svg class="section-illust" width="136" height="48" viewBox="0 0 136 48" fill="none" aria-hidden="true">
+          <path d="M4 26H22L28 18L34 34L41 8L48 40L55 15L61 31L66 26H88" stroke="#C85A32" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+          <ellipse cx="110" cy="24" rx="20" ry="13" stroke="#597053" stroke-width="1.4" />
+          <ellipse cx="110" cy="24" rx="13" ry="8" stroke="#597053" stroke-width="1.3" stroke-dasharray="3 3" />
+          <circle cx="110" cy="24" r="3.5" fill="#3A5470" />
+        </svg>
+      </div>
+
+      <div class="earth-grid">
+        <article class="mag-card">
+          <div>
+            <div class="card-kicker">
+              <span class="card-tag">地震目錄分析</span>
+              <span>1994–2026</span>
+            </div>
+            <h3>臺灣地震活動度觀測與五大構造分區模型</h3>
+            <p>
+              整理 GDMS 1994 至 2026 年間共 87 萬筆臺灣地震目錄資料，針對五大構造分區的地震頻率、能量特性與線性預估趨勢進行資料探索。
+            </p>
+            <span class="earth-stat">87 萬筆觀測目錄 · 構造分區比較</span>
+          </div>
+          <div class="card-links">
+            <a class="link-pill" href="https://github.com/jimmymochi/taiwan-seismicity-analysis" target="_blank" rel="noopener noreferrer">GitHub 專案</a>
+          </div>
+        </article>
+
+        <article class="mag-card">
+          <div>
+            <div class="card-kicker">
+              <span class="card-tag warm">震波紀錄專題</span>
+              <span>GMT 6.5 vs Python</span>
+            </div>
+            <h3>臺灣重大工業氣爆之地震學觀測分析</h3>
+            <p>
+              透過地震儀觀測紀錄解析 2014 高雄氣爆、2019 雲林麥寮與 2023 屏東明揚事件，同時比較 GMT 6.5.0 與 Python 在地圖與波形繪製上的表現。
+            </p>
+            <span class="earth-stat">三個歷史事件 · 雙工具繪圖實驗</span>
+          </div>
+          <div class="card-links">
+            <a class="link-pill" href="https://github.com/jimmymochi/kaohsiung-explosion-seismology" target="_blank" rel="noopener noreferrer">GitHub 專案</a>
+          </div>
+        </article>
+
+        <article class="mag-card">
+          <div>
+            <div class="card-kicker">
+              <span class="card-tag moss">查詢介面與成果</span>
+              <span>Gradio · Spaces</span>
+            </div>
+            <h3>GDMS Taiwan 查詢 App ＆ 地震學期末成果</h3>
+            <p>
+              以 Gradio 打造臺灣地震資料查詢網頁介面，並將 114-2 學期地震學課程的練習圖表與完整分析報告公開整理在雲端空間。
+            </p>
+            <span class="earth-stat">互動式查詢 · 完整學期彙整</span>
+          </div>
+          <div class="card-links">
+            <a class="link-pill" href="https://github.com/jimmymochi/gdms-taiwan" target="_blank" rel="noopener noreferrer">GDMS App</a>
+            <a class="link-pill" href="https://huggingface.co/spaces/Sapphirejimmy/seismology_final" target="_blank" rel="noopener noreferrer">期末成果網站</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- FEATURE 03 · 成長軌跡與專業認證 -->
+    <section class="feature-section" id="journey">
+      <div class="section-head">
+        <div>
+          <div class="feature-label">FEATURE 03 · JOURNEY &amp; CREDENTIALS</div>
+          <h2 class="section-title serif">成長軌跡與專業認證</h2>
+        </div>
+      </div>
+
+      <div class="journey-grid">
+        <div class="cert-card">
+          <div class="cert-ribbon">CERTIFICATION · 經濟部產業人才能力鑑定</div>
+          <h3 class="serif">iPAS AI應用規劃師（初級）</h3>
+          <p>
+            具備生成式 AI 與人工智慧導入基礎評估能力，熟悉如何把具體需求拆解成安全、可驗證且貼近使用情境的數位工作流程。
+          </p>
+          <div class="skill-chips">
+            <span class="skill-chip">AI 工作流設計</span>
+            <span class="skill-chip">自動化腳本與 CLI</span>
+            <span class="skill-chip">地球物理資料處理</span>
+            <span class="skill-chip">Python / Web 原型</span>
+            <span class="skill-chip">QGIS / GMT 繪圖</span>
+          </div>
+        </div>
+
+        <div class="timeline-card">
+          <ul class="timeline-list">
+            <li class="timeline-item active">
+              <div class="timeline-stage">大學 · 在學中（三年級）</div>
+              <div class="timeline-school">臺北市立大學</div>
+              <div class="timeline-detail">地球環境暨生物資源學系 · 地球科學與資料分析探索</div>
+            </li>
+            <li class="timeline-item">
+              <div class="timeline-stage">高級中學</div>
+              <div class="timeline-school">臺北市立西松高級中學</div>
+              <div class="timeline-detail">高中時期累積自然科學興趣與多元學習體驗</div>
+            </li>
+            <li class="timeline-item">
+              <div class="timeline-stage">國民中學</div>
+              <div class="timeline-school">臺北市立中正國民中學</div>
+              <div class="timeline-detail">台北成長時期的國中階段</div>
+            </li>
+            <li class="timeline-item">
+              <div class="timeline-stage">國民小學</div>
+              <div class="timeline-school">臺北市大安區金華國民小學</div>
+              <div class="timeline-detail">求學旅程的起點</div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- COLOPHON 聯絡與社群頁尾 -->
+    <footer class="colophon" id="colophon">
+      <div class="section-head" style="margin-bottom: 20px;">
+        <div>
+          <div class="feature-label">COLOPHON · CONNECT</div>
+          <h2 class="section-title serif">聯絡方式與個人角落</h2>
+        </div>
+      </div>
+
+      <div class="connect-grid">
+        <a class="connect-card" href="https://github.com/jimmymochi" target="_blank" rel="noopener noreferrer">
+          <div class="connect-label">Code &amp; Projects</div>
+          <div class="connect-title">GitHub (@jimmymochi)</div>
+          <div class="connect-desc">github.com/jimmymochi</div>
+        </a>
+
+        <a class="connect-card" href="https://huggingface.co/Sapphirejimmy" target="_blank" rel="noopener noreferrer">
+          <div class="connect-label">AI Spaces</div>
+          <div class="connect-title">Hugging Face (@Sapphirejimmy)</div>
+          <div class="connect-desc">各項互動式 Demo 與研究展示</div>
+        </a>
+
+        <a class="connect-card" href="mailto:jimmymochi@gmail.com">
+          <div class="connect-label">Email</div>
+          <div class="connect-title">寫信給我</div>
+          <div class="connect-desc">jimmymochi@gmail.com</div>
+        </a>
+
+        <div class="connect-card muted-card">
+          <div class="connect-label">Instagram</div>
+          <div class="connect-title">日常攝影與生活紀錄</div>
+          <div class="connect-desc">搜尋帳號或之後補上公開連結</div>
+        </div>
+
+        <div class="connect-card muted-card">
+          <div class="connect-label">Threads</div>
+          <div class="connect-title">AI 靈感與隨筆碎念</div>
+          <div class="connect-desc">搜尋帳號或之後補上公開連結</div>
+        </div>
+
+        <div class="connect-card muted-card">
+          <div class="connect-label">Facebook</div>
+          <div class="connect-title">校園與日常動態</div>
+          <div class="connect-desc">搜尋名稱或之後補上公開連結</div>
+        </div>
+      </div>
+
+      <div class="colophon-bar">
+        <span>© <span id="year"></span> 陳柏亘 Chen Po-Hsuan (Jimmy Mochi)</span>
+        <span>Hosted on GitHub Pages · jimmymochi.loc.cc</span>
+      </div>
     </footer>
-  </main>
+  </div>
 
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
 
-    const btn = document.getElementById("themeToggle");
     const root = document.documentElement;
-    const saved = localStorage.getItem("theme");
-    if (saved) {
-      root.setAttribute("data-theme", saved);
+    const toggleBtn = document.getElementById("themeToggle");
+    const themeIcon = document.getElementById("themeIcon");
+    const themeLabel = document.getElementById("themeLabel");
+
+    function applyTheme(theme) {
+      root.setAttribute("data-theme", theme);
+      if (theme === "night") {
+        themeIcon.textContent = "☀️";
+        themeLabel.textContent = "切換為和紙晝光";
+      } else {
+        themeIcon.textContent = "🌙";
+        themeLabel.textContent = "切換為富士月夜";
+      }
     }
 
-    btn.addEventListener("click", () => {
+    const savedTheme = localStorage.getItem("jimmy_theme") || "paper";
+    applyTheme(savedTheme);
+
+    toggleBtn.addEventListener("click", () => {
       const current = root.getAttribute("data-theme");
-      const next = current === "light" ? "dark" : "light";
-      root.setAttribute("data-theme", next);
-      localStorage.setItem("theme", next);
+      const next = current === "night" ? "paper" : "night";
+      applyTheme(next);
+      localStorage.setItem("jimmy_theme", next);
     });
   </script>
 </body>
